@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# The universe wraps around, is toroidal, as the size must be finite
+# 1s represent populated cells, 0s represent unpopulated cells
+# I have included 5 possible initial states, which can be selected below
+
 import numpy as np
 get_ipython().run_line_magic('matplotlib', 'qt')
 import pylab
@@ -9,17 +13,17 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
 
-N = 20  # this is the size of the board
-a = int(N/1000) # this selects how much of the array to randomly populate. For N/x, smaller x populates less. 
+N = 100  # size of the board
+a = int(N/1000) # selects how much of the array to randomly populate. For N/x, smaller x populates less. 
 z = N - a
 r = int(N/2)
-nextGen = np.zeros((N,N), dtype='int')    # This array avoids newly populated cells being counted as a neighbour
+nextGen = np.zeros((N,N), dtype='int')   # Avoids counting newly populated cells as neighbours
 currentGen = np.zeros((N,N), dtype=np.int)
 
 def randomInitialState():
     for i in range(a,z):
         for j in range(a,z):
-            if (random.randrange(0, N) < N/3): # randomly populates the array. N/x is the expected proportion of 1s
+            if (random.randrange(0, N) < N/3): # N/x is the expected proportion of 1s
                 currentGen[i,j] = 1
             else:
                 currentGen[i,j] = 0
@@ -79,8 +83,6 @@ def neighbours(array,i,j):
 
 def play(a):
     global currentGen
-    #plt.imshow(currentGen)
-    #plt.show()
     g = 1
     while g <= 200:    
         for i in range(0,N):
@@ -100,7 +102,6 @@ def play(a):
         currentGen = np.copy(nextGen)
         
         im = plt.imshow(currentGen, animated = True)
-        #plt.show()
         
         g+=1
         
