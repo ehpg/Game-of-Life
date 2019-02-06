@@ -1,18 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
-
-
 import numpy as np
 get_ipython().run_line_magic('matplotlib', 'qt')
 import pylab
 import random
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-
-
-# In[6]:
 
 
 N = 20  # this is the size of the board
@@ -118,16 +112,3 @@ fig, ax = plt.subplots()
 mat = ax.matshow(currentGen)
 ani = animation.FuncAnimation(fig, play, interval = 100)
 plt.show()
-
-
-# In[148]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
